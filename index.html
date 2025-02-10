@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Angel, Will You Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #ffdde1;
+            font-family: Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            color: #d63384;
+        }
+        #container {
+            margin-top: 50px;
+        }
+        .btn {
+            font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            transition: all 0.3s;
+        }
+        #noBtn {
+            background-color: #6c757d;
+            color: white;
+            position: absolute;
+        }
+        #message {
+            display: none;
+            font-size: 24px;
+            color: #ff4d6d;
+            margin-top: 20px;
+        }
+        @keyframes floatHearts {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 30px;
+            animation: floatHearts 5s infinite;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Angel, Will You Be My Valentine? 💖</h1>
+    <img src="IMG_4565.jpg" width="250px">
+    <img src="IMG_4885.jpg" width="250px">
+    <div id="container">
+        <button id="yesBtn" class="btn" onclick="showMessage()">Yes</button>
+        <button id="noBtn" class="btn" onclick="resizeYes()">No</button>
+    </div>
+    <div id="message">Thank you for being my valentine i love you alot xoxo 💖</div>
+
+    <script>
+        function showMessage() {
+            document.getElementById("message").style.display = "block";
+            document.getElementById("container").style.display = "none";
+        }
+
+        function resizeYes() {
+            let yesBtn = document.getElementById("yesBtn");
+            let noBtn = document.getElementById("noBtn");
+            
+            let currentSize = parseInt(window.getComputedStyle(yesBtn).fontSize);
+            yesBtn.style.fontSize = (currentSize + 5) + "px";
+            yesBtn.style.padding = (parseInt(yesBtn.style.padding || "10") + 5) + "px";
+            
+            noBtn.style.position = "absolute";
+            noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+            noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+        }
+
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }
+        }
+        setInterval(createHearts, 1000);
+    </script>
+</body>
+</html>
